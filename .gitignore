@@ -6,3 +6,4 @@ node_modules/
 *.log
 whatsapp-bot/**/ScriptCache/
 venv/
+whatsapp-bot/.wwebjs_auth/
