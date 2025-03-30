@@ -1,3 +1,8 @@
+# Evitar subir archivos temporales o caché
+*.cache
+__pycache__/
 node_modules/
-venv/
 .env
+*.log
+whatsapp-bot/**/ScriptCache/
+venv/

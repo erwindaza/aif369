@@ -1,19 +1,41 @@
-# Imagen base liviana de Node.js con Alpine Linux
-FROM node:18-alpine
+FROM node:18-slim
 
-# Crear el directorio de trabajo dentro del contenedor
+# Instala dependencias del sistema necesarias para Puppeteer y Chromium
+RUN apt-get update && apt-get install -y \
+    wget \
+    ca-certificates \
+    fonts-liberation \
+    libappindicator3-1 \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libdbus-1-3 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    xdg-utils \
+    libgbm1 \
+    libgtk-3-0 \
+    libnss3 \
+    libxss1 \
+    libxtst6 \
+    chromium \
+ && rm -rf /var/lib/apt/lists/*
+
+# Crear directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos de dependencias primero (para aprovechar la cache)
+# Copiar dependencias
 COPY package*.json ./
 
-# Instalar las dependencias necesarias del bot
+# Instalar dependencias del bot
 RUN npm install
 
-# Copiar el resto del código fuente al contenedor
+# Copiar código fuente
 COPY . .
 
-# (Opcional) Exponer un puerto si usas algún tipo de webhook en el futuro
-# EXPOSE 3000
+# Agregar variable de entorno para puppeteer (usa Chromium del sistema)
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# No usamos CMD porque el comando se define en docker-compose.yml
+# Docker-compose se encarga de ejecutar el bot
