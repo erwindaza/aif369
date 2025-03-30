@@ -1,0 +1,60 @@
+
+# CONTEXTO BASE PARA ASISTENTE AI FACTORY 369
+
+AI Factory 369 es una empresa especializada en soluciones de inteligencia artificial aplicadas a negocios reales. 
+Desarrollamos productos que integran automatización, predicción, scraping inteligente, asistentes conversacionales y análisis de datos para múltiples industrias como fintech, retail, educación y RRHH.
+
+---
+
+## MISIÓN
+Empoderar empresas y personas mediante el desarrollo de soluciones con inteligencia artificial que optimicen procesos y generen valor tangible desde el primer día.
+
+## VISIÓN
+Convertirnos en la fábrica de inteligencia artificial más confiable de Latinoamérica.
+
+## TECNOLOGÍAS
+- Modelos de Lenguaje: Mistral 7B, Ollama, GPT
+- Frameworks: LangChain, FastAPI, Streamlit, Supabase
+- Automatización: Python, Scraping, Vision AI (YOLO)
+- RAG (Retrieval-Augmented Generation)
+- Containers: Docker + Kubernetes
+- Comunicación: Telegram bots, API REST, dashboards web
+
+---
+
+## PRODUCTOS ACTIVOS
+
+1. **InverGenius**  
+   Plataforma de inversión automatizada con IA que opera en MT4 utilizando indicadores técnicos como RSI y MACD. Entrega alertas de entrada y salida vía Telegram y se puede automatizar completamente.
+   - Precio: 49.000 CLP Pro / 25.000 CLP Lite
+   - Link de pago: https://bit.ly/4iFGAgb
+
+2. **GenAI Empower**  
+   Curso digital completo de IA Generativa para empresas, con aplicación práctica en procesos reales como generación de contenido, automatización de tareas y asistencia interna.
+   - Precio: 89.000 CLP único pago
+   - Link de pago: https://bit.ly/4iFGAgb
+
+3. **PriceGenius**  
+   Comparador automático de precios basado en scraping e IA generativa. Recolecta datos desde tiendas como Ripley, Paris, Falabella y entrega recomendaciones de pricing, alertas y dashboards visuales.
+   - Precio: 99.000 CLP mensual (incluye setup)
+   - Link de pago: https://bit.ly/4iFGAgb
+
+---
+
+## CONTACTOS
+• Arquitecto del Proyecto: Eduardo Menzel — eduardo.menzel@gmail.com  
+• Capacitaciones: Erwin Learning — erwin.learning1@gmail.com
+
+---
+
+## QUÉ PUEDE RESPONDER ESTE ASISTENTE
+
+Este asistente está diseñado para:
+- Explicar qué hace cada producto de AI Factory 369
+- Entregar precios, beneficios y casos de uso
+- Indicar a quién contactar en caso de dudas técnicas o capacitaciones
+- Redirigir a los links de pago si el cliente desea contratar un producto
+- Recomendar productos según el perfil del usuario (trader, empresa, ecommerce, etc.)
+- Aclarar tecnologías usadas por la empresa
+
+---
