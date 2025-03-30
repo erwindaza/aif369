@@ -3,7 +3,11 @@ const qrcode = require('qrcode-terminal');
 const axios = require('axios');
 
 const client = new Client({
-    authStrategy: new LocalAuth()
+    authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless: true,
+        args: ['--no-sandbox']
+    }
 });
 
 client.on('qr', qr => {
@@ -19,13 +23,13 @@ client.on('message', async message => {
     console.log("📥 Mensaje recibido:", message.body);
 
     try {
-        const response = await axios.post('http://localhost:8000/chat', {
+        const response = await axios.post('http://backend:8000/chat', {
             prompt: message.body
         });
 
         const botResponse = response.data.respuesta;
 
-        console.log("🤖 Respuesta generada:", botResponse);  // <-- Agregado claramente aquí
+        console.log("🤖 Respuesta generada:", botResponse);
 
         message.reply(botResponse);
     } catch (error) {
@@ -35,3 +39,4 @@ client.on('message', async message => {
 });
 
 client.initialize();
+
