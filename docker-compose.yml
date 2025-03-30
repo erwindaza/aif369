@@ -10,6 +10,7 @@ services:
       - "8080:8000"
     volumes:
       - .:/app
+      - ./whatsapp-bot/.wwebjs_auth:/dev/null
     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
     networks:
       - aif_net

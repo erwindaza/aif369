@@ -1,6 +1,6 @@
 FROM node:18-slim
 
-# Instala dependencias del sistema necesarias para Puppeteer y Chromium
+# Instalar dependencias necesarias para Puppeteer/Chromium
 RUN apt-get update && apt-get install -y \
     wget \
     ca-certificates \
@@ -26,16 +26,16 @@ RUN apt-get update && apt-get install -y \
 # Crear directorio de trabajo
 WORKDIR /app
 
-# Copiar dependencias
+# Copiar archivos de dependencias
 COPY package*.json ./
 
-# Instalar dependencias del bot
+# Instalar dependencias de Node.js
 RUN npm install
 
-# Copiar código fuente
+# Copiar el resto del código fuente
 COPY . .
 
-# Agregar variable de entorno para puppeteer (usa Chromium del sistema)
+# Variable de entorno: usar Chromium del sistema
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# Docker-compose se encarga de ejecutar el bot
+# El comando se definirá en docker-compose
