@@ -1,0 +1,58 @@
+# General
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.db
+*.sqlite3
+*.zip
+*.tar.gz
+*.mp4
+*.csv
+*.xls*
+*.ipynb
+.DS_Store
+.env
+.env.*
+venv/
+.venv/
+
+# Node / JS
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Docker / VS Code / Git
+.dockerignore
+Dockerfile*
+docker-compose*
+compose*
+.vscode/
+.vs/
+.git/
+.gitignore
+.classpath
+.project
+.settings
+.toolstarget
+charts/
+LICENSE
+README.md
+
+# WhatsApp Bot: evita archivos con problemas de permisos
+whatsapp-bot/.wwebjs_auth/
+
+# Opcional: otras rutas sensibles o innecesarias
+**/*.dbmdl
+**/*.jfm
+**/*.*proj.user
+bin/
+obj/
+secrets.dev.yaml
+values.dev.yaml
+
+#otro
+whatsapp-bot/.wwebjs_auth/
+whatsapp-bot/.wwebjs_auth/session/
