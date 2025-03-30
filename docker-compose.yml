@@ -1,14 +1,33 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  aif369:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: aif369
+    container_name: ai_factory_backend
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - aif_net
 
+  whatsapp:
+    build:
+      context: ./whatsapp-bot
+      dockerfile: Dockerfile
+    container_name: ai_factory_whatsapp
+    depends_on:
+      - backend
+    volumes:
+      - ./whatsapp-bot:/app
+    working_dir: /app
+    command: sh -c "npm install && node bot.js"
+    networks:
+      - aif_net
+
+networks:
+  aif_net:
+    driver: bridge
