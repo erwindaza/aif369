@@ -21,8 +21,9 @@ async def home():
 
 @app.post("/chat")
 async def chat(prompt: ChatPrompt):
-    url = "http://localhost:11434/api/generate"
-    
+    # CAMBIO: url ajustada para Docker
+    url = "http://host.docker.internal:11434/api/generate"
+
     prompt_con_contexto = f"""
     Responde la siguiente pregunta usando estrictamente este contexto:
     {CONTEXTO}
@@ -31,7 +32,7 @@ async def chat(prompt: ChatPrompt):
     
     Respuesta breve y precisa en base al contexto:
     """
-    
+
     data = {
         "model": "mistral",
         "prompt": prompt_con_contexto,

@@ -43,6 +43,8 @@ README.md
 
 # WhatsApp Bot: evita archivos con problemas de permisos
 whatsapp-bot/.wwebjs_auth/
+.wwebjs_auth/
+
 
 # Opcional: otras rutas sensibles o innecesarias
 **/*.dbmdl
@@ -52,3 +54,4 @@ bin/
 obj/
 secrets.dev.yaml
 values.dev.yaml
+whatsapp-bot/.wwebjs_auth/session
