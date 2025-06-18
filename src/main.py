@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
+import os
+
+MODEL_NAME = os.getenv("MODEL_NAME", "mistral")  # Default es 'phi' por si no está en .env
 
 app = FastAPI(
     title="AIF369 WhatsApp Bot",
@@ -17,26 +20,31 @@ with open("contexto.txt", "r", encoding="utf-8") as file:
 
 @app.get("/")
 async def home():
-    return {"mensaje":"WhatsApp AI funcionando 🚀"}
+    return {"mensaje": "WhatsApp AI funcionando 🚀"}
 
 @app.post("/chat")
 async def chat(prompt: ChatPrompt):
-    # CAMBIO: url ajustada para Docker
     url = "http://host.docker.internal:11434/api/generate"
 
     prompt_con_contexto = f"""
-    Responde la siguiente pregunta usando estrictamente este contexto:
-    {CONTEXTO}
-    
-    Pregunta: {prompt.prompt}
-    
-    Respuesta breve y precisa en base al contexto:
-    """
+Eres Sofía, una asistente virtual de AI Factory 369 que responde con precisión usando el siguiente contexto.
+
+[Contexto]:
+{CONTEXTO}
+
+[Mensaje del usuario]:
+{prompt.prompt}
+
+[Respuesta clara, corta (máx. 100 caracteres y si te falta usa unpoco mas para dar la respuesta completa y que no quede cortadas las palabras por esta resctriccion, termianr una respuesta, termina las respuestas ), en el mismo idioma que el usuario, sin inventar nada]:
+"""
 
     data = {
-        "model": "mistral",
+        "model": MODEL_NAME,
         "prompt": prompt_con_contexto,
-        "stream": False
+        "stream": False,
+        "options": {
+            "num_predict": 150
+        }
     }
 
     response = requests.post(url, json=data)

@@ -9,10 +9,12 @@ services:
     ports:
       - "8080:8000"
     volumes:
-      - .:/app      
+      - .:/app
     command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
     networks:
       - aif_net
+    depends_on:
+      - postgres
 
   whatsapp:
     build:
@@ -23,10 +25,30 @@ services:
       - backend
     volumes:
       - ./whatsapp-bot:/app
+      - whatsapp_auth_data:/app/.wwebjs_auth   # 👈 volumen persistente
     working_dir: /app
     command: sh -c "npm install && node bot.js"
     networks:
       - aif_net
+
+  postgres:
+    image: postgres:15
+    container_name: aif369_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: aifuser
+      POSTGRES_PASSWORD: aifpass
+      POSTGRES_DB: aifchat
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - aif_net
+
+volumes:
+  postgres_data:
+  whatsapp_auth_data:  # 👈 volumen extra para el perfil de sesión
 
 networks:
   aif_net:
