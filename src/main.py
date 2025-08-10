@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
 import os
+import logging
 
 MODEL_NAME = os.getenv("MODEL_NAME", "mistral")  # Default es 'phi' por si no está en .env
 
@@ -14,9 +15,15 @@ app = FastAPI(
 class ChatPrompt(BaseModel):
     prompt: str
 
+logger = logging.getLogger(__name__)
+
 # Leer contexto desde archivo
-with open("contexto.txt", "r", encoding="utf-8") as file:
-    CONTEXTO = file.read()
+try:
+    with open("contexto.txt", "r", encoding="utf-8") as file:
+        CONTEXTO = file.read()
+except FileNotFoundError:
+    CONTEXTO = ""
+    logger.warning("contexto.txt not found; continuing without context")
 
 @app.get("/")
 async def home():
