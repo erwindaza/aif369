@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development, qa, production]
+    env:
+      ENVIRONMENT: ${{ matrix.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Run tests
+        run: pytest -q
+      - name: Build Docker image
+        run: docker build -t aif369:${{ matrix.environment }} .
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: echo "Deploying to $ENVIRONMENT environment"
