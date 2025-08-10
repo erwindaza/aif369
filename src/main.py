@@ -3,7 +3,7 @@ from pydantic import BaseModel
 import requests
 import os
 
-MODEL_NAME = os.getenv("MODEL_NAME", "mistral")  # Default es 'phi' por si no está en .env
+MODEL_NAME = os.getenv("MODEL_NAME", "mistral")  # Default es 'mistral' por si no está en .env
 
 app = FastAPI(
     title="AIF369 WhatsApp Bot",
